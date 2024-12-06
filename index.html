@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Простий сайт</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Стилізація хедера */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+        }
+
+        header img {
+            width: 50px;
+            height: 50px;
+        }
+
+        header nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: text-decoration 0.3s;
+        }
+
+        header nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Кнопка входу */
+        .login-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .login-btn:hover {
+            background-color: #218838;
+        }
+
+        /* Контейнер для контенту */
+        .content-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+            justify-content: center;
+        }
+
+        /* Стилізація картки продукту */
+        .product-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 300px;
+    flex: 1 1 calc(50% - 40px);
+    box-sizing: border-box;
+    background-color: #fff;
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-bottom: 60px; /* Додаємо відступ знизу */
+                    }   
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .product-card h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 15px 0 10px;
+            color: #333;
+        }
+
+        .product-card p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .product-card .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin: 10px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .product-card button {
+    width: 100%; 
+    padding: 10px 0;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 15px; 
+    transition: background-color 0.3s;
+    position: static; 
+            }
+
+        .product-card button:hover {
+            background-color: #218838;
+        }
+
+        /* Мобільне меню */
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+        }
+
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background-color: #333;
+            border-radius: 5px;
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .mobile-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            text-align: center;
+            border-bottom: 1px solid #444;
+        }
+
+        .mobile-nav a:hover {
+            background-color: #444;
+        }
+
+        /* Медіа-запити */
+        @media (max-width: 960px) {
+            .product-card {
+                flex: 1 1 calc(50% - 40px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .product-card {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+    <script>
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobile-nav');
+            mobileNav.style.display = mobileNav.style.display === 'flex' ? 'none' : 'flex';
+        }
+    </script>
+</head>
+<body>
+
+<!-- Хедер сайту -->
+<header>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY3m49xsTfOV0V4RfSMjjtmkW87Bv4az8mLQ&s" alt="Логотип сайту">
+    <nav>
+        <a href="#home">Головна</a>
+        <a href="#products">Продукти</a>
+        <a href="#about">Про нас</a>
+        <a href="#contact">Контакти</a>
+    </nav>
+    <button class="login-btn">Увійти</button>
+    <!-- Кнопка мобільного меню -->
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+    <!-- Випадаюче меню для мобільної версії -->
+    <div id="mobile-nav" class="mobile-nav">
+        <a href="#home">Головна</a>
+        <a href="#products">Продукти</a>
+        <a href="#about">Про нас</a>
+        <a href="#contact">Контакти</a>
+    </div>
+</header>
+
+<!-- Основний вміст -->
+<main>
+    <!-- Контейнер для карток продуктів -->
+    <section class="content-container">
+        <!-- Картки продуктів (приклади) -->
+        <article class="product-card">
+            <img src="https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Зображення продукту">
+            <h2>Мило</h2>
+            <p>Порядне мило для справжніх чоловіків.</p>
+            <div class="price">Ціна: 299 грн</div>
+            <button>Купити</button>
+        </article>
+
+        <!-- Картка продукту 2 -->
+        <article class="product-card">
+            <img src="https://plus.unsplash.com/premium_photo-1671379513621-bd4bff9f7557?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8JUQxJTg4JUQwJUIwJUQwJUJDJUQwJUJGJUQxJTgzJUQwJUJEJUQxJThDfGVufDB8fDB8fHww" alt="Зображення продукту">
+            <h2>Шампунь</h2>
+            <p>Шампунь для блиску та здоров'я волосся.</p>
+            <div class="price">Ціна: 199 грн</div>
+            <button>Купити</button>
+        </article>
+
+        <!-- Картка продукту 3 -->
+        <article class="product-card">
+            <img src="https://images.unsplash.com/photo-1695073621652-600b8699ceea?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Зображення продукту">
+            <h2>Зубна паста</h2>
+            <p>Паста, яка дарує свіжий подих та здорові зуби.</p>
+            <div class="price">Ціна: 99 грн</div>
+            <button>Купити</button>
+        </article>
+
+        <!-- Картка продукту 4 -->
+        <article class="product-card">
+            <img src="https://plus.unsplash.com/premium_photo-1661630971367-15853002aee8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Зображення продукту">
+            <h2>Крем для рук</h2>
+            <p>Крем для ніжності та зволоження шкіри рук.</p>
+            <div class="price">Ціна: 149 грн</div>
+            <button>Купити</button>
+        </article>
+    </section>
+</main>
+
+</body> 
+</html>
